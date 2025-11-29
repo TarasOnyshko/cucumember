@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUCUMEMBER - Join the Cucult!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cucumber-green: #77dd77;
+            --dark-green: #2d5a2d;
+            --light-green: #c9f0c9;
+            --cult-purple: #8a2be2;
+            --cult-robe: #4b0082;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-green);
+            color: var(--dark-green);
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,20 L80,20 L80,80 L20,80 Z' fill='none' stroke='%2377dd77' stroke-width='2' opacity='0.2'/%3E%3C/svg%3E");
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--cucumber-green), var(--dark-green));
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--cult-robe);
+        }
+        
+        .cucumber-cultist {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            bottom: 0;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .cucumber-cultist.left {
+            left: 5%;
+        }
+        
+        .cucumber-cultist.right {
+            right: 5%;
+        }
+        
+        .cucumber-body {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            background-color: var(--cucumber-green);
+            border-radius: 30px 30px 10px 10px;
+            bottom: 0;
+            left: 10px;
+            z-index: 2;
+        }
+        
+        .cucumber-face {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 15px;
+            left: 10px;
+            z-index: 3;
+        }
+        
+        .cucumber-eye {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--dark-green);
+            border-radius: 50%;
+        }
+        
+        .cucumber-eye.left {
+            top: 10px;
+            left: 8px;
+        }
+        
+        .cucumber-eye.right {
+            top: 10px;
+            right: 8px;
+        }
+        
+        .cucumber-mouth {
+            position: absolute;
+            width: 20px;
+            height: 5px;
+            background-color: var(--dark-green);
+            border-radius: 10px;
+            bottom: 8px;
+            left: 10px;
+        }
+        
+        .cult-robe {
+            position: absolute;
+            width: 70px;
+            height: 80px;
+            background-color: var(--cult-robe);
+            border-radius: 35px 35px 0 0;
+            bottom: 0;
+            left: 5px;
+            z-index: 1;
+        }
+        
+        .cult-hood {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-color: var(--cult-robe);
+            border-radius: 30px 30px 0 0;
+            top: -20px;
+            left: 10px;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 3px 3px 0 var(--dark-green);
+            margin: 10px 0;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: white;
+            font-style: italic;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--cucumber-green);
+        }
+        
+        .intro::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 200px;
+            background-color: var(--cucumber-green);
+            transform: rotate(45deg);
+            opacity: 0.2;
+        }
+        
+        .intro h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+        }
+        
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .feature {
+            flex: 1 1 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--cucumber-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: var(--cucumber-green);
+            border-radius: 50%;
+            top: -30px;
+            right: -30px;
+            opacity: 0.1;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature h3 {
+            font-size: 1.8rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+        
+        .feature p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to right, var(--cucumber-green), var(--dark-green));
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--cult-robe);
+        }
+        
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .cta-cucumbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .cta-cucumber {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            opacity: 0.3;
+        }
+        
+        .cta-cucumber:nth-child(1) {
+            top: 10px;
+            left: 10%;
+            transform: rotate(15deg);
+        }
+        
+        .cta-cucumber:nth-child(2) {
+            bottom: 10px;
+            right: 10%;
+            transform: rotate(-15deg);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--dark-green);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--dark-green);
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            background-color: var(--cult-purple);
+            color: white;
+        }
+        
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .testimonial {
+            flex: 1 1 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid var(--cucumber-green);
+        }
+        
+        .testimonial::before {
+            content: """;
+            font-size: 5rem;
+            color: var(--cucumber-green);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .testimonial .author {
+            font-weight: bold;
+            text-align: right;
+            color: var(--dark-green);
+        }
+        
+        .cult-meeting {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--cult-robe);
+        }
+        
+        .cult-meeting h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+        }
+        
+        .cucumber-crowd {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .crowd-cucumber {
+            width: 60px;
+            height: 90px;
+            position: relative;
+        }
+        
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 5px solid var(--cult-robe);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-cucumbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .footer-cucumber {
+            position: absolute;
+            width: 50px;
+            height: 80px;
+            opacity: 0.2;
+        }
+        
+        .footer-cucumber:nth-child(1) {
+            top: 10px;
+            left: 5%;
+        }
+        
+        .footer-cucumber:nth-child(2) {
+            bottom: 10px;
+            right: 5%;
+            transform: rotate(180deg);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-green);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1);
+            background-color: var(--cucumber-green);
+        }
+        
+        .cucumber-animation {
+            position: fixed;
+            width: 50px;
+            height: 20px;
+            background-color: var(--cucumber-green);
+            border-radius: 50%;
+            opacity: 0.7;
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .intro h2 {
+                font-size: 2rem;
+            }
+            
+            .cucumber-cultist {
+                width: 60px;
+                height: 90px;
+            }
+            
+            .cucumber-body {
+                width: 45px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="cucumber-cultist left">
+            <div class="cult-robe"></div>
+            <div class="cult-hood"></div>
+            <div class="cucumber-body"></div>
+            <div class="cucumber-face">
+                <div class="cucumber-eye left"></div>
+                <div class="cucumber-eye right"></div>
+                <div class="cucumber-mouth"></div>
+            </div>
+        </div>
+        
+        <div class="cucumber-cultist right">
+            <div class="cult-robe"></div>
+            <div class="cult-hood"></div>
+            <div class="cucumber-body"></div>
+            <div class="cucumber-face">
+                <div class="cucumber-eye left"></div>
+                <div class="cucumber-eye right"></div>
+                <div class="cucumber-mouth"></div>
+            </div>
+        </div>
+        
+        <h1>CUCUMEMBER</h1>
+        <p class="tagline">Where every ape becomes... a Cucumember</p>
+        <p>Silly. Green. Holy.</p>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>Welcome to the Cucult!</h2>
+            <p>In a world of boring vegetables, one cucumber dared to be different. CUCUMEMBER is not just a meme coin, it's a way of life. A spiritual journey. A crunchy revolution.</p>
+            <p>Join our growing community of Cucumbers and experience the refreshing power of green, silly, holy crypto enlightenment.</p>
+        </section>
+        
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🥒</div>
+                <h3>Silly</h3>
+                <p>We don't take ourselves too seriously. Life's a garden, dig it! Our community is built on laughter, memes, and the pure joy of being delightfully absurd.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💚</div>
+                <h3>Green</h3>
+                <p>Not just in color, but in spirit! We're fresh, we're crisp, we're environmentally conscious (in a metaphorical cucumber way).</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🙏</div>
+                <h3>Holy</h3>
+                <p>Our devotion to the Cucumber way is unwavering. We meditate on pickling, we pray to the salad gods, and we find spiritual fulfillment in every crunchy bite.</p>
+            </div>
+        </section>
+        
+        <section class="cult-meeting">
+            <h2>Weekly Cucult Gatherings</h2>
+            <p>Join our sacred ceremonies every Friday at the Digital Garden</p>
+            
+            <div class="cucumber-crowd">
+                <!-- Cucumber crowd members -->
+                <div class="crowd-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                    <div class="cucumber-face">
+                        <div class="cucumber-eye left"></div>
+                        <div class="cucumber-eye right"></div>
+                        <div class="cucumber-mouth"></div>
+                    </div>
+                </div>
+                
+                <div class="crowd-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                    <div class="cucumber-face">
+                        <div class="cucumber-eye left"></div>
+                        <div class="cucumber-eye right"></div>
+                        <div class="cucumber-mouth"></div>
+                    </div>
+                </div>
+                
+                <div class="crowd-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                    <div class="cucumber-face">
+                        <div class="cucumber-eye left"></div>
+                        <div class="cucumber-eye right"></div>
+                        <div class="cucumber-mouth"></div>
+                    </div>
+                </div>
+                
+                <div class="crowd-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                    <div class="cucumber-face">
+                        <div class="cucumber-eye left"></div>
+                        <div class="cucumber-eye right"></div>
+                        <div class="cucumber-mouth"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Experience the power of collective crunchiness!</p>
+        </section>
+        
+        <section class="cta-section">
+            <div class="cta-cucumbers">
+                <div class="cta-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                </div>
+                <div class="cta-cucumber">
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                </div>
+            </div>
+            
+            <h2>Ready to Become a Cucumember?</h2>
+            <p>Join our sacred community today and receive your digital cucumber blessing!</p>
+            <a href="#" class="cta-button">Join the Cucult Now!</a>
+        </section>
+        
+        <section class="testimonials">
+            <div class="testimonial">
+                <p>"Before CUCUMEMBER, I was just a regular pickle. Now I'm a spiritually enlightened Cucumember with purpose and a slightly higher market cap!"</p>
+                <p class="author">- Pickle Rick</p>
+            </div>
+            <div class="testimonial">
+                <p>"I invested my life savings in CUCUMEMBER and now I see the world in shades of green. My wallet is crispy and my soul is refreshed!"</p>
+                <p class="author">- Salad Fingers</p>
+            </div>
+            <div class="testimonial">
+                <p>"The Cucult changed my life. I went from a simple garden vegetable to a financially independent, spiritually awakened Cucumember. Hallelujah!"</p>
+                <p class="author">- Kirby the Cucumber</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-cucumbers">
+            <div class="footer-cucumber">
+                <div class="cult-robe"></div>
+                <div class="cult-hood"></div>
+                <div class="cucumber-body"></div>
+            </div>
+            <div class="footer-cucumber">
+                <div class="cult-robe"></div>
+                <div class="cult-hood"></div>
+                <div class="cucumber-body"></div>
+            </div>
+        </div>
+        
+        <p>© 2023 CUCUMEMBER - All rights preserved (like pickles)</p>
+        <div class="social-links">
+            <a href="https://x.com/i/communities/1994744121190154403/" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://t.me/cucumembers" class="social-link" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>Disclaimer: This is a meme coin. Please don't invest your life savings unless you're really, really into cucumbers.</p>
+    </footer>
+    
+    <script>
+        // Create floating cucumber animations
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 0; i < 15; i++) {
+                createFloatingCucumber();
+            }
+            
+            // Add more crowd members dynamically
+            const crowd = document.querySelector('.cucumber-crowd');
+            for (let i = 0; i < 8; i++) {
+                const cucumber = document.createElement('div');
+                cucumber.classList.add('crowd-cucumber');
+                cucumber.innerHTML = `
+                    <div class="cult-robe"></div>
+                    <div class="cult-hood"></div>
+                    <div class="cucumber-body"></div>
+                    <div class="cucumber-face">
+                        <div class="cucumber-eye left"></div>
+                        <div class="cucumber-eye right"></div>
+                        <div class="cucumber-mouth"></div>
+                    </div>
+                `;
+                crowd.appendChild(cucumber);
+            }
+        });
+        
+        function createFloatingCucumber() {
+            const cucumber = document.createElement('div');
+            cucumber.classList.add('cucumber-animation');
+            
+            // Random position and size
+            const size = Math.random() * 30 + 20;
+            const left = Math.random() * 100;
+            
+            cucumber.style.width = `${size}px`;
+            cucumber.style.height = `${size/2.5}px`;
+            cucumber.style.left = `${left}vw`;
+            cucumber.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            cucumber.style.animationDelay = `${Math.random() * 5}s`;
+            
+            document.body.appendChild(cucumber);
+            
+            // Remove cucumber after animation completes to prevent DOM overload
+            setTimeout(() => {
+                cucumber.remove();
+                createFloatingCucumber();
+            }, 30000);
+        }
+        
+        // Add interactive effect to CTA button
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Welcome to the Cucult! Your spiritual cucumber journey begins now. 🥒🙏');
+        });
+    </script>
+</body>
+</html>
